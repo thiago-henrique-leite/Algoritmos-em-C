@@ -6,20 +6,18 @@ DESCRIÇÃO DO PROBLEMA: O Quicksort é um algoritmo considerado muito rápido p
 Quicksort, em que o pivô escolhido como uma mediana de 3 valores, onde esses três valores devem ser definidos como: a) primeiro 
 elemento do intervalo considerado do vetor, b) o elemento na posição do meio e c) o último elemento.
 
-Você deve implementar um programa que leia da entrada um conjunto de informações sobre N pessoas contendo o nome de cada pessoa com até 
-15 caracteres e a sua idade. O seu programa deverá utilizar o algoritmo do Quicksort com escolha do pivo por mediana de 3, conforme 
-indicado acima, e que ordene-os de forma crescente por idade. Posteriormente deve-se verificar se o resultado da ordenação é estável, 
-ou seja, se pessoas com a mesma idade foram mantidas na mesma ordem relativa da entrada. Após a ordenação, você deve imprimir uma região
-indicada da lista ordenada. 
+Implemente um programa que leia da entrada um conjunto de informações sobre N pessoas contendo o nome de cada pessoa com até 15 
+caracteres e a sua idade. O seu programa deverá utilizar o algoritmo do Quicksort com escolha do pivo por mediana de 3, e que ordene-os 
+de forma crescente por idade. Posteriormente deve-se verificar se o resultado da ordenação é estável, ou seja, se pessoas com a mesma 
+idade foram mantidas na mesma ordem relativa da entrada. Após a ordenação, você deve imprimir uma região indicada da lista ordenada. 
 
 ENTRADA:
 A primeira linha da entrada contém o número N (2 ≤ N ≤ 105.000) de pessoas a serem ordenadas. Nas próximas N linhas são apresentados, 
-em cada linha, um nome de até 15 caracteres e um inteiro representando a idade. A linha seguinte contém dois números P (1 ≤ P ≤ N) da 
-posição do primeiro nome a ser impresso e o número M (1 ≤ M ≤ N-P+1) de pessoas a serem impressas partir do P-éssimo nome.
+em cada linha, um nome de até 15 caracteres e um inteiro representando a idade.
 
 SAÍDA: 
-Na primeira linha da saída, imprima “yes” se a ordenação for estável, ou “no”, caso contrário. Nas próximas M linhas, imprima os M nomes
-e idades presentes a partir da Péssima posição da lista ordenada, uma pessoa a cada linha. 
+Na primeira linha da saída, imprima se a ordenação é ou não estável. Depois, imprima os nomes e idades presentes da lista ordenada, 
+uma pessoa a cada linha. 
 
 Exemplos de entrada e saída ao final.
 */
@@ -119,27 +117,29 @@ int EhEstavel(TCelula *A, int p, int ult, TCelula *Inicio) { //Verifica se a ord
                     é o mesmo que aparece prmeiro no arranjo inicial, se a resposta for negativa, aux recebe 0 */
                     aux = 0;
             }
-           
-    if(aux==0 || cont==0) //Imprime se é instável ou não
-        printf("no");
+    if(cont==0) 
+        printf("\nsem idades repetidas");
+    else if(aux==0) //Imprime se é instável ou não
+        printf("\nnão é estável");
     else
-        printf("yes");
+        printf("\né estável");
        
     return 1;
 }
 
 
 int main(void) {
-    int medianaIndice, n, i, p=0, ult, num, x;
+    int medianaIndice, n, i, p=0, ult;
     TCelula *lista, *Inicio;
    
-    //printf("Digite o número de pessoas a serem ordenadas: ");
+    printf("Digite o número de pessoas a serem ordenadas: ");
     scanf("%d", &n);
 
     ult = n-1; //Definindo a última posição do arranjo
 
     lista = (TCelula*)malloc(n*sizeof(TCelula)); //Aloca dinamicamente um vetor de estruturas com os nomes e idades
-    for(i=0; i<n; i++)
+    printf("\nEntre com os %d nomes e ao lado as respectivas idades:\n", n);
+    for(i=0; i<n; i++) 
         scanf("%s %d", lista[i].nome, &lista[i].idade);
    
     Inicio = (TCelula*)malloc(n*sizeof(TCelula)); //Guarda os dados iniciais também de forma dinâmica
@@ -148,13 +148,10 @@ int main(void) {
         Inicio[i].idade = lista[i].idade;
     }
 
-    //printf("Digite a posição do primeiro nome a ser impresso e o número de nomes a serem impressos: ");
-    scanf("%d %d", &x, &num);
-   
     quicksort(lista, p, ult);
     EhEstavel(lista, p, ult, Inicio);
    
-    for(i=x-1; i<x+num-1; i++) //Imprime os dados no intervalo determinado pelo usuário
+    for(i=0; i<n; i++) //Imprime os dados ordenados
         printf("\n%s %d", lista[i].nome, lista[i].idade);
        
     free(lista); //Libera a memória alocada
@@ -168,10 +165,9 @@ Alex 20
 Gabriel 20
 Joana 18
 Rodrigo 18
-1 4
 
 Exemplo de Saída 1
-no
+não é estável
 Rodrigo 18
 Joana 18
 Alex 20
@@ -185,10 +181,12 @@ Ana 21
 Jose 22
 Silvia 25
 Joao 23
-3 2
 
 Exemplo de Saída 2
-yes
+é estável
+Ana 21
+Jose 22
 Joao 23
 Daniel 25
+Silvia 25
 */
