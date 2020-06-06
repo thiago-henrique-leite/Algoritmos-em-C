@@ -91,12 +91,14 @@ void HEAPSORT(int A[], int tam) {
 int main(void) {
     int vet[MAXTAM], n;
    
-    //printf("Digite a quantidade de valores do vetor: ");
+    printf("Digite a quantidade de valores a serem ordenados: ");
     scanf("%d", &n);
    
+    printf("\nEntre com os %d valores:\n", n);
     for(int i=1; i<n+1; i++) //Lê os n valores do array lado a lado
         scanf("%d", &vet[i]);
-   
+    
+    printf("\n");
     HEAPSORT(vet, n);
 }
 
