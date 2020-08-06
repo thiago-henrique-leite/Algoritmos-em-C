@@ -1,4 +1,4 @@
-/* **** Pesquisa Interna - Hashing com Endereçamento Aberto - AED II - Thiago Henrique Leite - 139920 - Prof. Alvaro **** */
+//Pesquisa Interna - Hashing com Endereçamento Aberto
 
 #include <stdio.h>
 #include <stdlib.h>
