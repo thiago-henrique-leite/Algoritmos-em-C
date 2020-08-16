@@ -22,43 +22,91 @@ uma pessoa a cada linha.
 Exemplos de entrada e saída ao final.
 */
 
+/* **************** Quicksort é estável? - AED II - Thiago Henrique Leite - 139920 - Prof. Alvaro **************** */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #define MAX 16 //Tamanho máximo do nome (15 caracteres ocupáveis)
-
-typedef struct { //Estrutura dos dados a serem recebidos, nome e idade
-    char nome[MAX];
-    int idade;
-} TCelula;
-
-void swap(TCelula *A, int x, int y) { //Troca a posição das idades e nomes nas respectivas posições
-    int aux1;
-    aux1 = A[x].idade;
-    A[x].idade = A[y].idade;
-    A[y].idade = aux1;
-   
-    char aux2[MAX];
-    strcpy(aux2, A[x].nome);
-    strcpy(A[x].nome, A[y].nome);
-    strcpy(A[y].nome, aux2);
+ 
+typedef struct { //Estrutura que armazena os dados de uma pessoa: nome, idade e ordem de inserção.
+    char Nome[MAX];  
+    int Idade; 
+    int Ordem; 
+} TPessoa;
+ 
+//Cabeçalho de Funções
+void Quicksort(TPessoa *V, int p, int r);
+int  Partition(TPessoa *V, int p, int r);
+void MedianaDeTres(TPessoa *V, int p, int r);
+void swap(TPessoa *V, int x, int y);
+void EhEstavel(TPessoa *A, int p, int ult);
+void Imprime(TPessoa *V, int p_impresso, int quant_impresso);
+ 
+int main() {
+    TPessoa *Lista;
+    int i, p=0, num_pessoas, p_impresso, quant_impresso;
+    
+    //printf("Entre com a quantidade de pessoas a serem listadas: ");
+    scanf("%d", &num_pessoas);
+    
+    Lista = (TPessoa*)malloc(num_pessoas*sizeof(TPessoa)); //Aloca espaço para a lista de pessoas
+    
+    for(i=0; i<num_pessoas; i++) {
+        scanf("%s %d", Lista[i].Nome, &Lista[i].Idade);  //lê os nomes e idades de cada uma das pessoas
+        Lista[i].Ordem = i; //Define a ordem de inserção
+    }
+    
+    //printf("\nEntre com a posição do primeiro nome a ser impresso e a quantidade de nomes a serem impressos: ");
+    scanf("%d %d", &p_impresso, &quant_impresso);
+    
+    Quicksort(Lista, p, num_pessoas-1); //Ordena a lista de pessoas em ordem crescente de idades
+    EhEstavel(Lista, p, num_pessoas-1); //Verifica se a ordenação é estável
+    Imprime(Lista, p_impresso, quant_impresso); //Imprime a lista ordenada
+    
+    free(Lista); //Libera memória alocada
+    return 0;
 }
-
-void encontraMediana(TCelula *A, int p, int ult) { //Encontra a mediana de 3 para uma escolha melhorada do pivô
+ 
+void Quicksort(TPessoa *V, int p, int r) { //Ordena os dados através do Quicksort
+    int q;
+    if(p<r) {
+        q = Partition(V, p, r); //q recebe o índice do pivô já ordenado
+        Quicksort(V, p, q-1); //Chama o Quicksort para ordenar os valores menores ou iguais ao pivô
+        Quicksort(V, q+1, r); //Chama o Quicksort para ordenar os valores maiores que o pivô
+    }
+}
+ 
+int Partition(TPessoa *V, int p, int r) { //Reparte o vetor em duas partes, à esquerda valores menores ou iguais ao pivô e à direita valores maiores que o pivô
+    int i, j;
+    MedianaDeTres(V, p, r); //Chamada da função MedianaDeTres
+    i = p;
+    for(j=p; j<r; j++) { //laço que realiza a partição dos dados
+        if(V[j].Idade <= V[r].Idade) { 
+            swap(V, i, j);
+            i++;
+        }
+    }
+    swap(V, i, r); //Coloca o pivô em seu devido lugar no arranjo
+    return(i); //Retorna o índice do pivô
+}
+ 
+void MedianaDeTres(TPessoa *V, int p, int r) { //Define o pivô a partir do método de Mediana de Três.
     int meio, a, b, c, medianaIndice;
      
-    meio = (p+ult)/2;
-    a = A[p].idade;
-    b = A[meio].idade;
-    c = A[ult].idade;
+    meio = (p+r)/2; //Define o índice referente ao meio do arranjo
+    a = V[p].Idade;
+    b = V[meio].Idade;
+    c = V[r].Idade;
     medianaIndice = 0;
-     
-    if (a < b)
+    
+    //Comparações para definir a melhor opção para ser o pivô, o valor de início do arranjo, o valor do meio ou o valor do fim 
+    if (a < b) 
         if (b < c)
             medianaIndice = meio;
         else
             if (a < c)
-                medianaIndice = ult;
+                medianaIndice = r;
             else
                 medianaIndice = p;
                
@@ -67,95 +115,56 @@ void encontraMediana(TCelula *A, int p, int ult) { //Encontra a mediana de 3 par
             medianaIndice = meio;
         else
             if (c < a)
-                medianaIndice = ult;
+                medianaIndice = r;
             else
                 medianaIndice = p;
        
-    if(medianaIndice != ult)
-        swap(A, medianaIndice, ult); //Troca que coloca a mediana na última possição do arranjo para o quicksort
+    swap(V, medianaIndice, r); //Coloca o pivô na última posição do arranjo
 }
-
-int partition(TCelula *A, int p, int ult) { //Partição dos dados
-    int x, i;
-    x = A[ult].idade;
-    i = p-1;
-    for(int j=p; j<=ult-1; j++)
-        if(A[j].idade<=x) {
-            i++;
-            swap(A, i, j);
-        }
-    swap(A, i+1, ult);
-    return(i+1);
-}
-
-void quicksort(TCelula *A, int p, int ult) { //Ordena os dados através do Quicksort
-    int q, aux;
-    if(p<ult) {
-        encontraMediana(A, p, ult); //Chamada da função para encontrar a mediana e colocá-la na última posição do arranjo
-        q = partition(A, p, ult); //Reparte o arranjo em dois com o uso do pivô
-        quicksort(A, p, q-1); //Chama recursivamente a função para valores menores que o pivô
-        quicksort(A, q+1, ult); //Chama recursivamente a função para valores maiores que o pivô
+ 
+void swap(TPessoa *V, int x, int y) { //Troca a posição de duas pessoas na lista
+    if(x!=y) {
+        int aux1; //Troca das idades
+        aux1 = V[x].Idade;
+        V[x].Idade = V[y].Idade;
+        V[y].Idade = aux1;
+       
+        char aux2[MAX]; //Troca dos nomes
+        strcpy(aux2, V[x].Nome);
+        strcpy(V[x].Nome, V[y].Nome);
+        strcpy(V[y].Nome, aux2);
+        
+        int aux3; //Troca da ordem de inserção
+        aux3 = V[x].Ordem;
+        V[x].Ordem = V[y].Ordem;
+        V[y].Ordem = aux3;
     }
 }
-
-char* retorna_nome(int idade, TCelula *Inicio, int ult) { //Função utilizada para casos em que possuem duas pessoas com mesma idade
-    int i;
-    for(i=0; i<=ult; i++)
-        if(Inicio[i].idade == idade) //É utilizado o arranjo de início na comparação
-            return Inicio[i].nome; //Retorna o nome que aparece primeiro no arranjo inicial
-}
-
-int EhEstavel(TCelula *A, int p, int ult, TCelula *Inicio) { //Verifica se a ordenação é estável
-    int i, j, cont=0, aux=1;
-               
-    for(i=0; i<ult; i++)
-        for(j=i+1; j<=ult; j++) //É utilizado o arranjo final nas comparações
-            if(A[i].idade == A[j].idade) { //Compara se há duas pessoas com mesma idade
-                cont++; //Contador para saber se existe ou não idades iguais
-                if(strcmp(retorna_nome(A[i].idade, Inicio, ult), A[i].nome))
-                    /* Em caso afirmativo, Verifica se o nome que aparece primeiro no arranjo final
-                    é o mesmo que aparece prmeiro no arranjo inicial, se a resposta for negativa, aux recebe 0 */
-                    aux = 0;
+ 
+void EhEstavel(TPessoa *V, int p, int ult) { //Verifica se a ordenação é estável
+    int i, j, cont=0, estavel=0;
+ 
+    for(i=0; i<ult; i++) {
+        for(j=i+1; j<=ult; j++) { 
+            if(V[i].Idade == V[j].Idade) { //Compara se há duas pessoas com mesma idade
+                cont++; //Em caso afirmativo a contagem de pessoas iguais é incrementada
+                if(V[i].Ordem < V[j].Ordem) //Verifica se a primeira pessoa a aparecer na lista ordenada foi inserida primeiro no início
+                    estavel++; //Em caso afirmativo, a variável estavel é incrementada
             }
-    if(cont==0) 
-        printf("\nsem idades repetidas");
-    else if(aux==0) //Imprime se é instável ou não
-        printf("\nnão é estável");
-    else
-        printf("\né estável");
-       
-    return 1;
-}
-
-
-int main(void) {
-    int medianaIndice, n, i, p=0, ult;
-    TCelula *lista, *Inicio;
-   
-    printf("Digite o número de pessoas a serem ordenadas: ");
-    scanf("%d", &n);
-
-    ult = n-1; //Definindo a última posição do arranjo
-
-    lista = (TCelula*)malloc(n*sizeof(TCelula)); //Aloca dinamicamente um vetor de estruturas com os nomes e idades
-    printf("\nEntre com os %d nomes e ao lado as respectivas idades:\n", n);
-    for(i=0; i<n; i++) 
-        scanf("%s %d", lista[i].nome, &lista[i].idade);
-   
-    Inicio = (TCelula*)malloc(n*sizeof(TCelula)); //Guarda os dados iniciais também de forma dinâmica
-    for(i=0; i<n; i++) {
-        strcpy(Inicio[i].nome, lista[i].nome);
-        Inicio[i].idade = lista[i].idade;
+        }
     }
-
-    quicksort(lista, p, ult);
-    EhEstavel(lista, p, ult, Inicio);
-   
-    for(i=0; i<n; i++) //Imprime os dados ordenados
-        printf("\n%s %d", lista[i].nome, lista[i].idade);
-       
-    free(lista); //Libera a memória alocada
-    free(Inicio);
+      
+    //Se o contador for igual a variavel estavel, isto quer dizer que todas as pessoas com a mesma idade foram mantidas na mesma ordem relativa da entrada
+    if(estavel==cont) 
+        printf("yes"); 
+    else
+        printf("no");
+}
+ 
+void Imprime(TPessoa *V, int p_impresso, int quant_impresso) { 
+    int i;
+    for(i=p_impresso-1; i<p_impresso+quant_impresso-1; i++) //Imprime os dados no intervalo determinado pelo usuário
+        printf("\n%s %d", V[i].Nome, V[i].Idade);
 }
 
 /*
