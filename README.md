@@ -1,19 +1,3 @@
-# *Estruturas de Dados*
-
-	Árvore Binária de Busca
-	Árvore AVL - Inserção, Remoção e Balanceamento
-	Árvore Rubro Negra 
-	Hash por Encadeamento
-	Hash com endereçamento aberto
-
-# *Métodos de Ordenação Interna em C*
-
-	Merge Sort (divisão por 2 e por 3)
-	Radix Sort
-	Couting Sort
-	Quicksort
-	Heapsort
-
 ## *Estruturas de Dados*
 
 Uma Estrutura de Dados consiste em uma organização de dados na memória de um computador 
@@ -22,11 +6,11 @@ forma eficiente. Usando estruturas de dados adequadas, podemos administrar uma g
 quantidade de dados de forma eficiente, com aplicações em bancos de dados ou serviços de 
 busca e indexação de dados, e no desenvolvimento de algoritmos eficientes.
 
-  * [Árvore Binária de Busca](EstruturadeDados/Arvores/ABB/ABB.c)
-  * [Árvore AVL](EstruturadeDados/Arvores/AVL)
-  * [Árvore Rubro Negra](EstruturadeDados/Arvores/RubroNegra/ARVORES-RUBRO-NEGRA.c)
-  * [Hash por Encadeamento](EstruturadeDados/Hashing/Encadeamento/ENCADEAMENTO.c)
-  * [Hash com endereçamento aberto](EstruturadeDados/Hashing/Enderecamento-Aberto/END-ABERTO.c)
+  * [Árvore Binária de Busca](Estrutura-de-Dados/Arvores/ABB)
+  * [Árvore AVL](Estrutura-de-Dados/Arvores/AVL)
+  * [Árvore Rubro Negra](Estrutura-de-Dados/Arvores/Rubro-Negra)
+  * [Hash por Encadeamento](Estrutura-de-Dados/Hashing/Encadeamento)
+  * [Hash por Endereçamento Aberto](Estrutura-de-Dados/Hashing/Enderecamento-Aberto)
 
 
 ## *Métodos de Ordenação Interna em C*
@@ -37,11 +21,10 @@ ordem crescente ou descrescente. Existem diferentes maneiras de se realizar esta
 operação, cada uma mais adequada para cada caso dependendo do tamanho e forma dos 
 dados de entrada.
 
-  * [Heap Sort](OrdenacaoInterna/HEAPSORT.c)
-  * [Merge Sort - Divisão por 2](OrdenacaoInterna/MERGESORT-div2.c)
-  * [Merge Sort - Divisão por 3](OrdenacaoInterna/MERGESORT-div3.c)
-  * [Quicksort](OrdenacaoInterna/QUICKSORT.c) 
-  * [Counting Sort](OrdenacaoInterna/COUTING-SORT.c)
-  * [Radix Sort](OrdenacaoInterna/RADIX-SORT.c)
+  * [Heap Sort](Ordenacao-Interna/heap-sort)
+  * [Merge Sort](Ordenacao-Interna/mergesort)
+  * [Quicksort](Ordenacao-Interna/quicksort) 
+  * [Counting Sort](Ordenacao-Interna/couting-sort)
+  * [Radix Sort](Ordenacao-Interna/radix-sort)
 
   

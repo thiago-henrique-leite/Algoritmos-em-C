@@ -1,29 +1,3 @@
-# data-structure
-
-//APLICAÇÃO DO QUICKSORT  
-/*
-DESCRIÇÃO DO PROBLEMA: O Quicksort é um algoritmo considerado muito rápido para a maioria das situações.  Considere o algoritmo do 
-Quicksort, em que o pivô escolhido como uma mediana de 3 valores, onde esses três valores devem ser definidos como: a) primeiro 
-elemento do intervalo considerado do vetor, b) o elemento na posição do meio e c) o último elemento.
-
-Implemente um programa que leia da entrada um conjunto de informações sobre N pessoas contendo o nome de cada pessoa com até 15 
-caracteres e a sua idade. O seu programa deverá utilizar o algoritmo do Quicksort com escolha do pivo por mediana de 3, e que ordene-os 
-de forma crescente por idade. Posteriormente deve-se verificar se o resultado da ordenação é estável, ou seja, se pessoas com a mesma 
-idade foram mantidas na mesma ordem relativa da entrada. Após a ordenação, você deve imprimir uma região indicada da lista ordenada. 
-
-ENTRADA:
-A primeira linha da entrada contém o número N (2 ≤ N ≤ 105.000) de pessoas a serem ordenadas. Nas próximas N linhas são apresentados, 
-em cada linha, um nome de até 15 caracteres e um inteiro representando a idade.
-
-SAÍDA: 
-Na primeira linha da saída, imprima se a ordenação é ou não estável. Depois, imprima os nomes e idades presentes da lista ordenada, 
-uma pessoa a cada linha. 
-
-Exemplos de entrada e saída ao final.
-*/
-
-/* **************** Quicksort é estável? - AED II - Thiago Henrique Leite - 139920 - Prof. Alvaro **************** */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -166,36 +140,3 @@ void Imprime(TPessoa *V, int p_impresso, int quant_impresso) {
     for(i=p_impresso-1; i<p_impresso+quant_impresso-1; i++) //Imprime os dados no intervalo determinado pelo usuário
         printf("\n%s %d", V[i].Nome, V[i].Idade);
 }
-
-/*
-Exemplo de Entrada 1
-4
-Alex 20
-Gabriel 20
-Joana 18
-Rodrigo 18
-
-Exemplo de Saída 1
-não é estável
-Rodrigo 18
-Joana 18
-Alex 20
-Gabriel 20
-_______________________
-
-Exemplo de Entrada 2
-5
-Daniel 25
-Ana 21
-Jose 22
-Silvia 25
-Joao 23
-
-Exemplo de Saída 2
-é estável
-Ana 21
-Jose 22
-Joao 23
-Daniel 25
-Silvia 25
-*/
