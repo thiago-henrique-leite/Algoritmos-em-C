@@ -19,24 +19,32 @@ a quantidade de elementos e altura da árvore após a inserção dos dados, e a 
 pesquisa, oque poderá causar aumento ou diminuição na quantidade de elementos e/ou na altura da árvore.
 
 ### *Exemplos de entradas e saídas*
-Entrada 1
+
+##### Entrada 1
+
 4 10 12 5 8 -1                   {Números a serem inseridos no dicionario}
+
 5                                {Número a ser pesquisado no dicionario}
 
-Saida 1
+##### Saida 1
+
 tamanho inicial: 5 
 altura inicial: 4                {Tamanho do dicionario e altura da arvore no inicio}
 
 tamanho final: 4 
 altura final: 3                  {Tamanho do dicionario e altura da arvore no final}
 ______________________________________________________________________________________
-Entrada 2
+
+##### Entrada 2
+
 4 10 12 5 8 -1                   {Números a serem inseridos no dicionario}
+
 7                                {Número a ser pesquisado no dicionario}
 
-Saida 2
+##### Saida 2
+
 tamanho inicial: 5 
-altura inicial: 4                {Tamanho do dicionario e altura da arvore no inicio}
+altura inicial: 4                {Tamanho do dicionario e altura da arvore no início}
 
 tamanho final: 6 
 altura final: 5                  {Tamanho do dicionario e altura da arvore no final}

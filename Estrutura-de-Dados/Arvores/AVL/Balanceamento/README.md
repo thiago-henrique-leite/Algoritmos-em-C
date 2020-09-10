@@ -15,10 +15,14 @@ Imprima a altura da árvore binária de busca. Caso ela não seja uma árvore AV
 balanceada usando a representação por parênteses aninhados.
 
 ### *Exemplo de entrada e saída*
-• Exemplo de Entrada:
+
+##### • Exemplo de Entrada:
+
 (C3(C2(C1()())())(C4()(C9(C5()(C8()()))())))   {Arvore binária de busca de entrada}
 
-• Exemplo de Saída:
+##### • Exemplo de Saída:
+
 Altura inicial: 4                              {Altura da árvore antes das operações}
+
 Altura final: 3                                {Altura da árvore depois das operações}
 (C3(C2(C1()())())(C5(C4()())(C8()(C9()()))))   {Arvore binária de busca de saída}

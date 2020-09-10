@@ -20,22 +20,26 @@ Na primeira linha da saída, imprima se a ordenação é ou não estável. Depoi
 lista ordenada, uma pessoa a cada linha. 
 
 ### *Exemplos de entradas e saídas*
-Entrada 1
+
+##### Entrada 1
+
 4
 Alex 20
 Gabriel 20
 Joana 18
 Rodrigo 18
 
-Saída 1
-não é estável
+##### Saída 1
+
+no
 Rodrigo 18
 Joana 18
 Alex 20
 Gabriel 20
 _______________________
 
-Entrada 2
+##### Entrada 2
+
 5
 Daniel 25
 Ana 21
@@ -43,8 +47,8 @@ Jose 22
 Silvia 25
 Joao 23
 
-Saída 2
-é estável
+##### Saída 2
+yes
 Ana 21
 Jose 22
 Joao 23

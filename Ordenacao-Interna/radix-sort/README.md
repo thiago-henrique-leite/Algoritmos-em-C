@@ -27,7 +27,9 @@ devem conter os respectivos nomes de acordo com a ordem de entrada, sendo um nom
 Imprima os nomes em ordem alfabética. 
 
 ### *Exemplos de entradas e saídas*
-Exemplo de Entrada 1:
+
+##### Exemplo de Entrada 1:
+
 5
 Daniel
 Ana
@@ -35,14 +37,17 @@ Jose
 Silvia
 Joao
 
-Exemplo de Saída 1:
+##### Exemplo de Saída 1:
+
 ana 
 daniel
 joao
 jose
 silvia
 _____________________
-Exemplo de Entrada 2:
+
+##### Exemplo de Entrada 2:
+
 10
 Zurich
 Zu
@@ -55,7 +60,8 @@ Zoo
 Zuu
 aaaaa
 
-Exemplo de Saída 2:
+##### Exemplo de Saída 2:
+
 aaaaa
 hu
 wei
