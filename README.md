@@ -18,8 +18,8 @@ busca e indexação de dados, e no desenvolvimento de algoritmos eficientes.
 Uma das aplicações mais estudadas e realizadas sobre vetores é a ordenação interna.
 Ordenar um vetor significa permutar seus elementos de tal forma que eles fiquem em 
 ordem crescente ou descrescente. Existem diferentes maneiras de se realizar esta
-operação, cada uma mais adequada para cada caso dependendo do tamanho e forma dos 
-dados de entrada.
+operação, cada uma mais adequada para cada caso dependendo do tamanho e forma 
+dos dados de entrada.
 
   * [Heap Sort](Ordenacao-Interna/heap-sort)
   * [Merge Sort](Ordenacao-Interna/mergesort)

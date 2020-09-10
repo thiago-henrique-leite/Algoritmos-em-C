@@ -25,4 +25,5 @@ balanceada usando a representação por parênteses aninhados.
 Altura inicial: 4                              {Altura da árvore antes das operações}
 
 Altura final: 3                                {Altura da árvore depois das operações}
+
 (C3(C2(C1()())())(C5(C4()())(C8()(C9()()))))   {Arvore binária de busca de saída}

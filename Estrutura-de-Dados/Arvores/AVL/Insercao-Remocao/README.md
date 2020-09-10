@@ -15,11 +15,15 @@ inserido na árvore, caso contrário, ele deverá ser removido da árvore.
 Imprima a Árvore AVL representada por parênteses aninhados.
 
 ### *Exemplo de entrada e saída:*
-• Exemplo:
-Entrada:
+
+##### Entrada:
+
 7                {Quantidade de números de entrada}
+
 3 4 9 2 5 1 8    {Números a serem inseridos na árvore}
+
 5                {Número a ser pesquisado na árvore}
 
-Saída:
+##### Saída:
+
 (C4(C2(C1()())(C3()()))(C8()(C9()())))  {Arvore AVL de saída}

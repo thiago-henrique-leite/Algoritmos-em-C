@@ -29,9 +29,11 @@ pesquisa, oque poderá causar aumento ou diminuição na quantidade de elementos
 ##### Saida 1
 
 tamanho inicial: 5 
+
 altura inicial: 4                {Tamanho do dicionario e altura da arvore no inicio}
 
 tamanho final: 4 
+
 altura final: 3                  {Tamanho do dicionario e altura da arvore no final}
 ______________________________________________________________________________________
 
@@ -44,7 +46,9 @@ ________________________________________________________________________________
 ##### Saida 2
 
 tamanho inicial: 5 
+
 altura inicial: 4                {Tamanho do dicionario e altura da arvore no início}
 
 tamanho final: 6 
+
 altura final: 5                  {Tamanho do dicionario e altura da arvore no final}
