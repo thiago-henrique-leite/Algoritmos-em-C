@@ -5,21 +5,21 @@
 
 typedef struct SCelula *TCelula; //Define TCelula como um ponteiro para uma célula
 
-typedef struct SCelula { //Estrutura de cada célula
+typedef struct SCelula { //Estrutura de cada célula da lista
     TCelula ant, prox; //Ponteiros pras células anterior e próxima
-    int chave; //Item a ser armazenada
+    int chave; //Item a ser armazenado
 } TLista;
 
-TCelula Inicia(TCelula Celula) { //Inicializa a Celula
-    Celula = (TCelula)malloc(sizeof(TLista));
+TCelula Inicializa(TCelula Celula) { //Inicializa a Lista Encadeada
+    Celula = malloc(sizeof(TLista));
     Celula->prox = NULL;
     Celula->ant = NULL;
 }
  
-void Insere(TCelula *Celula, int chave){ //Insere um novo elemento
+void Insere(TCelula Celula, int chave){ //Insere um novo elemento na lista
     TCelula Novo, Aux;
-    Aux = (*Celula);
-    Novo = (TCelula)malloc(sizeof(TLista));
+    Aux = Celula;
+    Novo = malloc(sizeof(TLista));
     Novo->chave = chave;
     Novo->prox = NULL;
     while(Aux->prox != NULL)
@@ -29,7 +29,7 @@ void Insere(TCelula *Celula, int chave){ //Insere um novo elemento
    
 }
 
-void Remove(TCelula *Celula) { //Remove um elemento
+void Remove(TCelula *Celula) { //Remove um elemento da lista
     TCelula Aux;
     (*Celula)->ant->prox = (*Celula)->prox;
     if((*Celula)->prox != NULL)
@@ -43,64 +43,69 @@ int FunctionHash(int k, int tam) { //Retorna o resultado da Função Hash de div
     else return 0;
 }
 
-void Imprime(TCelula *Lista, int indice){ //Imprime
+void Imprime(TCelula Celula, int indice){ //Imprime a tabela hash
     TCelula Aux;
-    printf("\n[%d] ", indice);
-    if((*Lista)->prox != NULL){
-        Aux = (*Lista)->prox;
+    printf("[%d] ", indice);
+    if(Celula->prox != NULL){
+        Aux = Celula->prox;
         while(Aux != NULL){
             printf("%d ", Aux->chave);
             Aux = Aux->prox;
         }
     }  
+    printf("\n");
 }
 
-TCelula BuscaChave(TCelula *Lista, int chave) { //Busca um determinado elemento
-    if((*Lista)->ant==NULL && (*Lista)->prox==NULL)
+TCelula BuscaChave(TCelula Celula, int chave) { //Busca um determinado elemento em alguma das listas do hash
+    if(Celula->ant==NULL && Celula->prox==NULL)
         return NULL;
        
-    if((*Lista)->chave == chave)
-        return (*Lista);
+    else if(Celula->chave == chave)
+        return Celula;
        
-    if((*Lista)->prox != NULL)
-        return BuscaChave(&(*Lista)->prox, chave);
+    else if(Celula->prox != NULL)
+        return BuscaChave(Celula->prox, chave);
    
-    return NULL;
+    else
+        return NULL;
 }
 
-
 int main() {
-    TCelula Pesquisa, Aux;
+    TCelula Lista, Pesquisa, Aux;
     TCelula *Hash;
-    int tam, quant, num, chaveBusca, indice;
+
+    int j, i, tam, quant, num, chaveBusca, indice;
    
-    printf("Entre com o tamanho da tabela Hash: ");
+    //printf("Entre com o tamanho da tabela Hash: ");
     scanf("%d", &tam);
    
-    Hash = (TCelula*)malloc(tam*sizeof(TCelula)); //Inicializa a Tabela Hash, uma lista de listas
+    Hash = (TCelula*)malloc(tam*sizeof(TCelula)); //Inicializa a Tabela Hash
    
-    for(int j=0; j<tam; j++)
-        Hash[j] = Inicia(Aux); //Inicializa cada uma das listas da tabela
-   
-    printf("Entre com a quantidade de números de entrada: ");
+    for(j=0; j<tam; j++)
+        Hash[j] = Inicializa(Aux); //Inicializa cada uma das listas encadeadas da tabela
+
+    //printf("Entre com a quantidade de números de entrada: ");
     scanf("%d", &quant);
-   
-    for(int i=0; i<quant; i++) {
-        scanf("%d", &num);
-        Insere(&Hash[FunctionHash(num, tam)], num); //Insere os elementos lidos na tabela
+
+    for(i=0; i<quant; i++) {
+         scanf("%d", &num);
+         Insere(&Hash[FunctionHash(num, tam)], num); //Insere os elementos lidos na tabela
     }
    
-    printf("Entre com a chave a ser pesquisada na tabela: ");
+    //printf("Entre com a chave a ser pesquisada na tabela: ");
     scanf("%d", &chaveBusca);
-   
+    
     indice = FunctionHash(chaveBusca, tam);
     Pesquisa = BuscaChave(&Hash[indice], chaveBusca); //Verifica se a chave de busca foi encontrada na tabela
-   
+
     if(Pesquisa!=NULL)
         Remove(&Pesquisa); //Caso seja encontrada, a chave é removida da tabela
-    else
+    else 
         Insere(&Hash[indice], chaveBusca); //Caso não seja encontrada, a chave é inserida na tabela
 
-    for(int i=0; i<tam; i++)
-        Imprime(&Hash[i], i); //Imprime a Tabela Hash final
+    
+    for(i=0; i<tam; i++)
+         Imprime(&Hash[i], i); //Imprime a Tabela Hash final
+
+    return 0;
 }
