@@ -27,4 +27,6 @@ dos dados de entrada.
   * [Counting Sort](Ordenacao-Interna/couting-sort)
   * [Radix Sort](Ordenacao-Interna/radix-sort)
 
-  
+## *Métodos de Ordenação Externa em C*
+
+  * [Ordenação Externa](Ordenacao-Externa/ordenacao-externa.c)
