@@ -25,7 +25,6 @@ e para a fase de intercalação, para cada caso testado, variando o arquivo de e
 variando a definição do tamanho da memória principal (ao todo são quatro combinações,
 para cada entrada nesta tabela, tem-se os tempos gastos por fase, distribuição e intercalação).
 
-# Obs.
+##### Obs.
 
-- Para testar a implementação do algoritmo, crie dois arquivos com números separados por espaço, ou a cada linha. 
-A quantidade de números é de sua escolha.
+- Para testar a implementação do algoritmo, crie ou baixe um arquivo com números para serem lidos, sendo um número a cada linha. 
