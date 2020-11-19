@@ -29,4 +29,4 @@ dos dados de entrada.
 
 ## *Métodos de Ordenação Externa em C*
 
-  * [Ordenação Externa](Ordenacao-Externa/ordenacao-externa.c)
+  * [Ordenação Externa](Ordenacao-Externa)
